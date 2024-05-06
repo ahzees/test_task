@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "templateproject"
+name = "test_task"
 version = "0.1.0"
 description = ""
 authors = ["ahzees <matviy.stets@gmail.com>"]
@@ -7,6 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8.10"
+fastapi = "^0.111.0"
+uvicorn = "^0.29.0"
+opencv-python = "^4.9.0.80"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -15,7 +18,7 @@ pre-commit = "^3.0.4"
 mypy = "^1.0.0"
 flake8 = "^6.0.0"
 pytest = "^7.2.1"
-isort = "^5.12.0"
+isort = "^5.13.2"
 commitizen = "^2.41.0"
 
 [tool.commitizen]
@@ -24,7 +27,7 @@ version = "0.1.0"
 tag_format = "v$version"
 update_changelog_on_bump = true
 version_files = [
-    "templateproject/__init__.py:version",
+    "test_task/__init__.py:version",
     "pyproject.toml:^version"
 ]
 
