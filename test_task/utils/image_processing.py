@@ -1,5 +1,4 @@
 import os
-from typing import List
 
 import cv2
 from conf import SAVE_DIR, redis_client
@@ -12,18 +11,16 @@ def convert_to_gray(input_path: str, output_path: str) -> str:
     cv2.imwrite(output_path, gray_image)
 
 
-def save_uploaded_files(uploaded_files: List[UploadFile]):
+def save_uploaded_files(uploaded_file: UploadFile):
     """
     Function to save uploaded files to the specified directory.
     """
-    for uploaded_file in uploaded_files:
-        # Read file content before closing
-        file_content = uploaded_file.file.read()
-        file_path = os.path.join(SAVE_DIR, uploaded_file.filename)
-        with open(file_path, "wb") as buffer:
-            buffer.write(file_content)
-        # Convert and save grayscale image
-        gray_file_path = os.path.join(SAVE_DIR, f"gray_{uploaded_file.filename}")
-        convert_to_gray(file_path, gray_file_path)
-        # Cache the grayscale image
-        redis_client.set(f"gray_{uploaded_file.filename}", gray_file_path)
+    file_content = uploaded_file.file.read()
+    file_path = os.path.join(SAVE_DIR, uploaded_file.filename)
+    with open(file_path, "wb") as buffer:
+        buffer.write(file_content)
+    # Convert and save grayscale image
+    gray_file_path = os.path.join(SAVE_DIR, f"gray_{uploaded_file.filename}")
+    convert_to_gray(file_path, gray_file_path)
+    # Cache the grayscale image
+    redis_client.set(f"gray_{uploaded_file.filename}", gray_file_path)

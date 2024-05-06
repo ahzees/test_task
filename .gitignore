@@ -2,3 +2,5 @@
 .env
 /*/**/__pycache__
 /*/*/images
+images
+/*/**/images_logger
