@@ -7,3 +7,4 @@ images
 .mypy_cache
 .pytest_cache
 test_images
+images_logger.log

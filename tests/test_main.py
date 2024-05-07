@@ -1,5 +1,5 @@
-import logging
 import os
+import shutil
 import sys
 from concurrent.futures import ThreadPoolExecutor
 
@@ -15,9 +15,6 @@ sys.path.append(
 )
 
 from test_task.main import app
-
-# Налаштування логування для вашого тесту
-logging.basicConfig(filename="test.log", level=logging.INFO)
 
 client = TestClient(app)
 
@@ -54,14 +51,8 @@ def create_test_images():
 
     yield
 
-    # Після завершення тестів видаляємо тестові зображення
-    for file in os.listdir(SAVE_DIR):
-        os.remove(os.path.join(SAVE_DIR, file))
-    os.rmdir(SAVE_DIR)
-
 
 def test_upload_image(create_test_images):
-    logging.info("Початок тесту test_upload_image")
     files = []
     for i in range(NUM_IMAGES):
         files.append(
@@ -79,11 +70,9 @@ def test_upload_image(create_test_images):
     assert (
         response.status_code == 200
     ), f"Помилка при виконанні запиту: {response.status_code}"
-    logging.info("Запит на завантаження зображень виконано успішно")
 
 
 def test_conversion_accuracy(create_test_images):
-    logging.info("Початок тесту test_conversion_accuracy")
     files = []
     for i in range(NUM_IMAGES):
         files.append(
@@ -104,11 +93,9 @@ def test_conversion_accuracy(create_test_images):
     assert (
         response.headers["Content-Type"] == "image/jpeg"
     ), "Неправильний тип вмісту відповіді"
-    logging.info("Запит на перевірку точності конвертації виконано успішно")
 
 
 def test_concurrent_requests(create_test_images):
-    logging.info("Початок тесту test_concurrent_requests")
     urls = ["/convert/"] * NUM_IMAGES
     responses = []
 
@@ -138,5 +125,17 @@ def test_concurrent_requests(create_test_images):
         assert (
             response.status_code == 200
         ), f"Помилка при виконанні запиту: {response.status_code}"
+    delete_files_except_current_file(os.path.dirname(__file__))
 
-    logging.info("Всі паралельні запити виконані успішно")
+
+def delete_files_except_current_file(directory):
+    for filename in os.listdir(directory):
+        if filename != os.path.basename(__file__):
+            filepath = os.path.join(directory, filename)
+            try:
+                if os.path.isfile(filepath):
+                    os.remove(filepath)
+                elif os.path.isdir(filepath):
+                    shutil.rmtree(filepath)
+            except Exception as e:
+                print(f"Failed to delete {filepath}: {e}")
