@@ -62,7 +62,7 @@ http://127.0.0.1:8000/convert/
 ### Test
 Also, you can test project using unit test in test/ folder 
 ```bash
-#You have tobe in the project root 
+#You have to be in the project root 
 cd tests
 pytest
 ```
