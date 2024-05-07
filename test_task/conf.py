@@ -6,7 +6,7 @@ import redis
 
 images_logger = logging.getLogger(__name__)
 images_logger.setLevel(logging.INFO)
-images_logger.addHandler(logging.FileHandler("images_logger"))
+images_logger.addHandler(logging.FileHandler("images_logger.log"))
 
 dotenv.load_dotenv()
 
