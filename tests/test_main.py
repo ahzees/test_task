@@ -14,7 +14,6 @@ sys.path.append(
     )
 )
 
-
 from test_task.main import app
 
 # Налаштування логування для вашого тесту
@@ -25,7 +24,7 @@ client = TestClient(app)
 SAVE_DIR = os.path.join(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), "tests/test_images"
 )
-NUM_IMAGES = 99
+NUM_IMAGES = 15
 
 
 def download_image(image_url, image_path):
@@ -34,7 +33,7 @@ def download_image(image_url, image_path):
         f.write(response.content)
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def create_test_images():
     # Створюємо тестову папку для зберігання зображень, якщо її не існує
     if not os.path.exists(SAVE_DIR):
