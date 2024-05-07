@@ -4,3 +4,6 @@
 /*/*/images
 images
 /*/**/images_logger
+.mypy_cache
+.pytest_cache
+test_images
