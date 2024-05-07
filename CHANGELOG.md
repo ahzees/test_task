@@ -1,3 +1,30 @@
+## v1.0.0 (2024-05-07)
+
+
+- major: project release [Task]: test_task-10
+- [Description list]
+feat: project release
+- [Notes]
+<notes>
+- hotfix: removed test.log
+- minor: final version of the project [Task]: test_task-9
+- [Description list]
+build: final version of the project
+- [Notes]
+<notes>
+- Update README.md
+- * Update README.md
+
+
+* hotfix: fixed some problems with tests
+[Task]: test_task-8
+
+[Description list]
+fix: fixed some problems with tests, due to creating unnecessary files
+
+[Notes]
+<notes>
+
 ## v0.1.1 (2024-05-07)
 
 
