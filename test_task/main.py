@@ -1,3 +1,4 @@
+import datetime
 import os
 
 from conf import SAVE_DIR, images_logger, redis_client
@@ -27,6 +28,8 @@ async def convert_images(uploaded_file: UploadFile = File(...)):
     else:
         return {"error": "Failed to convert the image"}
 
-    images_logger.info(f"Converted image - {converted_file_path}")
+    images_logger.info(
+        f"Converted image - {converted_file_path}; time - {datetime.datetime.now()}"
+    )
     # Return the converted image as a response
     return FileResponse(converted_file_path, media_type="image/jpeg")
