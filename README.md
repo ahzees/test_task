@@ -6,6 +6,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Test](#test)
+- [Logging](#logging)
 - [Dependencies](#dependencies)
 - [Configuration](#configuration)
 
@@ -65,6 +66,12 @@ Also, you can test project using unit test in test/ folder
 #You have to be in the project root 
 cd tests
 pytest
+```
+### Logging
+To view log file u have to open test_task/images_logger.log
+```bash
+#using terminal
+vim test_task/images_logger.log
 ```
 
 ## Configuration
