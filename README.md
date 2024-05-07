@@ -39,7 +39,7 @@ cd test_task
 poetry install
 poetry shell
 
-#To run server from root 
+#To run server from root
 cd test_task
 
 #Ensure that you have .env file
@@ -50,7 +50,7 @@ Dependencies are listed in the `pyproject.toml` file and locked with `poetry.loc
 
 - Use `poetry add <package>` to add new packages.
 - Run `poetry update` to update the dependencies.
-  
+
 ## Usage
 The main functionality is accessed through the /convert/ endpoint, which accepts image uploads and returns the grayscale image:
 ```bash
@@ -61,9 +61,9 @@ http://127.0.0.1:8000/docs
 http://127.0.0.1:8000/convert/
 ```
 ### Test
-Also, you can test project using unit test in test/ folder 
+Also, you can test project using unit test in test/ folder
 ```bash
-#You have to be in the project root 
+#You have to be in the project root
 cd tests
 pytest
 ```
